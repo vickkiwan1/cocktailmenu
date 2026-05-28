@@ -1,65 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="house">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>House Cocktail Menu</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@400;500;600&family=Righteous&family=Titan+One&family=Creepster&family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="hero">
-    <div class="hero-controls">
-      <button id="themeBtn" title="Switch theme">🌿 Botanical</button>
-      <button id="langBtn">中文</button>
-    </div>
+<!-- Theme background decorations (emoji scattered, behind everything) -->
+<div class="theme-decos" id="themeDecos"></div>
 
-    <div class="hero-deco hero-deco--top"></div>
-
-    <div class="hero-content">
-      <div class="hero-subtitle" id="heroSubtitle">HOUSE</div>
-      <h1 id="title">COCKTAIL MENU</h1>
-      <div class="hero-zh">鸡尾酒菜单</div>
-      <div class="hero-ornament">✦</div>
-      <div class="hero-tagline">Crafted &bull; Seasonal &bull; Experimental</div>
-    </div>
-
-    <div class="hero-deco hero-deco--bottom"></div>
-  </header>
-
-  <!-- LAYOUT -->
-  <div class="layout">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="sidebar-inner">
-        <h2 id="inventoryTitle">Available Ingredients</h2>
-        <div id="inventoryList"></div>
-        <div class="sidebar-actions">
-          <button id="selectAllBtn">SELECT ALL</button>
-          <button id="clearAllBtn">CLEAR ALL</button>
-        </div>
-        <p class="sidebar-hint" id="sidebarHint">Uncheck ingredients to see drink availability update</p>
-      </div>
-    </aside>
-
-    <!-- MAIN -->
-    <main>
-      <div id="featuredCocktail"></div>
-      <div id="menu"></div>
-    </main>
-
+<header class="hero">
+  <div class="hero-controls">
+    <div id="themeDropdownWrap"></div>
+    <button id="langBtn">中文</button>
   </div>
+  <div class="hero-deco hero-deco--top"></div>
+  <div class="hero-content">
+    <div class="hero-subtitle">HOUSE</div>
+    <h1>COCKTAIL MENU</h1>
+    <div class="hero-zh">鸡尾酒菜单</div>
+    <div class="hero-ornament">✦</div>
+    <div class="hero-tagline">Crafted &bull; Seasonal &bull; Experimental</div>
+  </div>
+  <div class="hero-deco hero-deco--bottom"></div>
+</header>
 
-  <script src="app.js"></script>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <h2 id="inventoryTitle">Available Ingredients</h2>
+      <div id="inventoryList"></div>
+      <div class="sidebar-actions">
+        <button id="selectAllBtn">SELECT ALL</button>
+        <button id="clearAllBtn">CLEAR ALL</button>
+      </div>
+      <p class="sidebar-hint">Uncheck ingredients to see drink availability update</p>
+    </div>
+  </aside>
+  <main>
+    <div id="featuredCocktail"></div>
+    <div id="menu"></div>
+  </main>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
