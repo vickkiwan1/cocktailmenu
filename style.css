@@ -1,82 +1,194 @@
 /* ============================================================
-   CSS VARIABLES — House (Art Deco) Theme  [DEFAULT]
+   HOUSE — Art Deco (default)
    ============================================================ */
-:root,
-[data-theme="house"] {
-  --bg:           #0b5e68;
-  --bg-deep:      #083f47;
-  --bg-card:      #f7f0de;
-  --bg-sidebar:   #f7f0de;
-  --bg-featured:  #f7f0de;
-  --gold:         #d4a843;
-  --gold-light:   #f3e3b0;
-  --gold-dark:    #a07820;
-  --text-hero:    #f3e3b0;
-  --text-dark:    #1a3a40;
-  --text-mid:     #3a5c60;
-  --text-muted:   #5c7c80;
-  --accent:       #0b5e68;
-  --border:       #d4a843;
-  --border-card:  #c9b47a;
-  --section-rule: #d4a843;
-  --section-title-color: #f3e3b0;
-  --status-bg:    rgba(11,94,104,0.08);
-
-  --font-display: 'Cinzel', serif;
-  --font-card:    'Cormorant Garamond', serif;
-  --font-body:    'EB Garamond', serif;
-  --font-zh:      'Noto Serif TC', serif;
-
-  --card-radius:    4px;
-  --sidebar-radius: 4px;
-  --hero-pattern: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(212,168,67,0.04) 10px,
-    rgba(212,168,67,0.04) 11px
-  );
+:root, [data-theme="house"] {
+  --bg:            #0b5e68;
+  --bg-deep:       #083f47;
+  --bg-card:       #f7f0de;
+  --bg-sidebar:    #f7f0de;
+  --bg-featured:   #f7f0de;
+  --gold:          #d4a843;
+  --gold-light:    #f3e3b0;
+  --gold-dark:     #a07820;
+  --text-hero:     #f3e3b0;
+  --text-dark:     #1a3a40;
+  --text-mid:      #3a5c60;
+  --text-muted:    #5c7c80;
+  --accent:        #0b5e68;
+  --border:        #d4a843;
+  --border-card:   #c9b47a;
+  --section-color: #f3e3b0;
+  --section-rule:  #d4a843;
+  --status-bg:     rgba(11,94,104,0.08);
+  --font-display:  'Cinzel', serif;
+  --font-card:     'Cormorant Garamond', serif;
+  --font-body:     'EB Garamond', serif;
+  --font-zh:       'Noto Serif TC', serif;
+  --card-radius:   4px;
+  --sidebar-radius:4px;
+  --hero-pattern:  repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(212,168,67,0.04) 10px,rgba(212,168,67,0.04) 11px);
+  --status-avail:  #2a7a4b;
+  --status-limit:  #b8860b;
+  --status-unavail:#8b2a2a;
+  --status-text:   white;
+  --status-radius: 2px;
 }
 
 /* ============================================================
-   CSS VARIABLES — Botanical (Light) Theme
+   BOTANICAL — Watercolor
    ============================================================ */
 [data-theme="botanical"] {
-  --bg:           #f5f0e8;
-  --bg-deep:      #ede6d8;
-  --bg-card:      #fffdf8;
-  --bg-sidebar:   #f5f0e8;
-  --bg-featured:  #fffdf8;
-  --gold:         #c8976a;
-  --gold-light:   #c8976a;
-  --gold-dark:    #9c6e42;
-  --text-hero:    #3d2b1f;
-  --text-dark:    #3d2b1f;
-  --text-mid:     #6b4c38;
-  --text-muted:   #9c7a65;
-  --accent:       #c8976a;
-  --border:       #ddc4a8;
-  --border-card:  #e8d5bc;
-  --section-rule: #ddc4a8;
-  --section-title-color: #3d2b1f;
-  --status-bg:    rgba(200,151,106,0.08);
+  --bg:            #f5f0e8;
+  --bg-deep:       #ede6d8;
+  --bg-card:       #fffdf8;
+  --bg-sidebar:    #f5f0e8;
+  --bg-featured:   #fffdf8;
+  --gold:          #c8976a;
+  --gold-light:    #c8976a;
+  --gold-dark:     #9c6e42;
+  --text-hero:     #3d2b1f;
+  --text-dark:     #3d2b1f;
+  --text-mid:      #6b4c38;
+  --text-muted:    #9c7a65;
+  --accent:        #c8976a;
+  --border:        #ddc4a8;
+  --border-card:   #e8d5bc;
+  --section-color: #3d2b1f;
+  --section-rule:  #ddc4a8;
+  --status-bg:     rgba(200,151,106,0.08);
+  --font-display:  'Playfair Display', serif;
+  --font-card:     'Playfair Display', serif;
+  --font-body:     'EB Garamond', serif;
+  --font-zh:       'Noto Serif TC', serif;
+  --card-radius:   14px;
+  --sidebar-radius:14px;
+  --hero-pattern:  none;
+  --status-avail:  #b8dfc8;
+  --status-limit:  #f5d9b8;
+  --status-unavail:#f2c4c4;
+  --status-text:   inherit;
+  --status-radius: 20px;
+}
 
-  --font-display: 'Playfair Display', serif;
-  --font-card:    'Playfair Display', serif;
-  --font-body:    'EB Garamond', serif;
-  --font-zh:      'Noto Serif TC', serif;
+/* ============================================================
+   TIKI — Summer Tropical
+   ============================================================ */
+[data-theme="tiki"] {
+  --bg:            #f0e6c0;
+  --bg-deep:       #e8d9a8;
+  --bg-card:       rgba(255,250,225,0.88);
+  --bg-sidebar:    rgba(255,250,225,0.88);
+  --bg-featured:   rgba(255,250,225,0.88);
+  --gold:          #c8860a;
+  --gold-light:    #ffd166;
+  --gold-dark:     #7a2c0a;
+  --text-hero:     #5a2800;
+  --text-dark:     #3a1a00;
+  --text-mid:      #6a3a00;
+  --text-muted:    #8b5e1a;
+  --accent:        #c8860a;
+  --border:        #c8860a;
+  --border-card:   #d4a843;
+  --section-color: #7a2c0a;
+  --section-rule:  #c8860a;
+  --status-bg:     rgba(200,134,10,0.10);
+  --font-display:  'Righteous', cursive;
+  --font-card:     'Righteous', cursive;
+  --font-body:     'EB Garamond', serif;
+  --font-zh:       'Noto Serif TC', serif;
+  --card-radius:   8px;
+  --sidebar-radius:8px;
+  --hero-pattern:
+    radial-gradient(ellipse at 8% 12%, rgba(160,100,20,0.22) 0%, transparent 40%),
+    radial-gradient(ellipse at 92% 8%, rgba(140,80,10,0.18) 0%, transparent 38%),
+    radial-gradient(ellipse at 85% 90%, rgba(180,120,30,0.16) 0%, transparent 42%),
+    radial-gradient(ellipse at 12% 88%, rgba(150,90,15,0.14) 0%, transparent 38%),
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(150,100,20,0.025) 40px, rgba(150,100,20,0.025) 41px);
+  --status-avail:  #2a7a3a;
+  --status-limit:  #c87000;
+  --status-unavail:#8b2a1a;
+  --status-text:   white;
+  --status-radius: 20px;
+}
 
-  --card-radius:    14px;
-  --sidebar-radius: 14px;
-  --hero-pattern: none;
+/* ============================================================
+   HALLOWEEN
+   ============================================================ */
+[data-theme="halloween"] {
+  --bg:            #0d0d0d;
+  --bg-deep:       #1a0a00;
+  --bg-card:       #1e1208;
+  --bg-sidebar:    #1e1208;
+  --bg-featured:   #1e1208;
+  --gold:          #ff6b00;
+  --gold-light:    #ff9a3c;
+  --gold-dark:     #cc4400;
+  --text-hero:     #ff9a3c;
+  --text-dark:     #f0d080;
+  --text-mid:      #c8a050;
+  --text-muted:    #8a6030;
+  --accent:        #8b00cc;
+  --border:        #ff6b00;
+  --border-card:   #5a3010;
+  --section-color: #ff9a3c;
+  --section-rule:  #ff6b00;
+  --status-bg:     rgba(255,107,0,0.08);
+  --font-display:  'Creepster', cursive;
+  --font-card:     'Cormorant Garamond', serif;
+  --font-body:     'EB Garamond', serif;
+  --font-zh:       'Noto Serif TC', serif;
+  --card-radius:   4px;
+  --sidebar-radius:4px;
+  --hero-pattern:  radial-gradient(ellipse at 50% 0%, rgba(139,0,204,0.3) 0%, transparent 60%);
+  --status-avail:  #1a6b2a;
+  --status-limit:  #8b5500;
+  --status-unavail:#6b0000;
+  --status-text:   #f0d080;
+  --status-radius: 4px;
+}
+
+/* ============================================================
+   CHRISTMAS
+   ============================================================ */
+[data-theme="christmas"] {
+  --bg:            #faf5f0;
+  --bg-deep:       #fff8f5;
+  --bg-card:       #fffcfa;
+  --bg-sidebar:    #fff8f5;
+  --bg-featured:   #fffcfa;
+  --gold:          #c8960c;
+  --gold-light:    #cc1a1a;
+  --gold-dark:     #9a0000;
+  --text-hero:     #1a0a08;
+  --text-dark:     #1a0a08;
+  --text-mid:      #5c1a10;
+  --text-muted:    #8a4a40;
+  --accent:        #cc1a1a;
+  --border:        #cc1a1a;
+  --border-card:   #e8c0c0;
+  --section-color: #1a6b2a;
+  --section-rule:  #cc1a1a;
+  --status-bg:     rgba(204,26,26,0.06);
+  --font-display:  'Mountains of Christmas', cursive;
+  --font-card:     'Cormorant Garamond', serif;
+  --font-body:     'EB Garamond', serif;
+  --font-zh:       'Noto Serif TC', serif;
+  --card-radius:   12px;
+  --sidebar-radius:12px;
+  --hero-pattern:
+    repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(204,26,26,0.04) 30px, rgba(204,26,26,0.04) 31px),
+    repeating-linear-gradient(0deg,  transparent, transparent 30px, rgba(26,107,42,0.04)  30px, rgba(26,107,42,0.04)  31px);
+  --status-avail:  #1a6b2a;
+  --status-limit:  #8b6500;
+  --status-unavail:#cc1a1a;
+  --status-text:   white;
+  --status-radius: 12px;
 }
 
 /* ============================================================
    RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { transition: background 0.4s ease; }
 
 body {
   background: var(--bg);
@@ -96,22 +208,21 @@ body {
   padding: 0 40px 28px;
   text-align: center;
   position: relative;
-  transition: background 0.4s ease, border-color 0.4s ease;
+  transition: background 0.4s, border-color 0.4s;
 }
 
-[data-theme="botanical"] .hero {
-  background: #fff9f2;
-  border-bottom: 2px solid var(--border);
-}
+[data-theme="botanical"] .hero { background: #fff9f2; border-bottom: 2px solid var(--border); }
+[data-theme="halloween"] .hero { border-bottom-color: #ff6b00; }
 
 .hero-controls {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 10px;
-  padding: 18px 0 10px;
+  padding: 16px 0 10px;
 }
 
-.hero-controls button {
+.hero-controls #langBtn {
   background: transparent;
   color: var(--gold-light);
   border: 1.5px solid var(--gold);
@@ -124,18 +235,69 @@ body {
   font-weight: 600;
   transition: background 0.2s, color 0.2s;
 }
+[data-theme="botanical"] .hero-controls #langBtn { color: var(--text-dark); }
+.hero-controls #langBtn:hover { background: var(--gold); color: #fff; }
 
-[data-theme="botanical"] .hero-controls button {
+/* Theme dropdown */
+.theme-dropdown { position: relative; }
+
+.theme-btn {
+  background: transparent;
+  color: var(--gold-light);
+  border: 1.5px solid var(--gold);
+  padding: 7px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+[data-theme="botanical"] .theme-btn { color: var(--text-dark); }
+.theme-btn:hover { background: var(--gold); color: #fff; }
+.theme-caret { font-size: 10px; opacity: 0.7; }
+
+.theme-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-card);
+  border-radius: var(--card-radius);
+  min-width: 160px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 100;
+  overflow: hidden;
+}
+.theme-menu.open { display: block; }
+
+.theme-option {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1px;
   color: var(--text-dark);
-  border-color: var(--gold);
+  transition: background 0.15s;
+}
+.theme-option:hover { background: var(--status-bg); }
+.theme-option.active {
+  background: var(--accent);
+  color: var(--bg-card);
+  font-weight: 700;
 }
 
-.hero-controls button:hover {
-  background: var(--gold);
-  color: #fff;
-}
-
-/* Ornamental deco lines */
+/* Deco lines */
 .hero-deco {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
@@ -149,36 +311,56 @@ body {
   font-family: var(--font-display);
   color: var(--gold);
   letter-spacing: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   margin-bottom: 2px;
 }
-
 [data-theme="botanical"] .hero-subtitle {
-  font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 42px;
+  font-size: 44px;
   letter-spacing: 2px;
-  color: var(--gold);
-  font-weight: 400;
+}
+[data-theme="tiki"] .hero-subtitle {
+  font-size: 16px;
+  letter-spacing: 6px;
+  color: var(--gold-light);
+}
+[data-theme="halloween"] .hero-subtitle {
+  font-size: 18px;
+  letter-spacing: 6px;
+}
+[data-theme="christmas"] .hero-subtitle {
+  font-size: 20px;
+  letter-spacing: 4px;
 }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(44px, 8vw, 78px);
+  font-size: clamp(42px, 8vw, 78px);
   color: var(--text-hero);
   font-weight: 700;
   letter-spacing: 6px;
   line-height: 1;
   margin: 4px 0 10px;
 }
-
 [data-theme="botanical"] .hero h1 {
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(30px, 5vw, 50px);
   letter-spacing: 10px;
-  font-weight: 700;
   color: var(--text-dark);
   margin-top: 0;
+}
+[data-theme="tiki"] .hero h1 {
+  color: var(--gold-light);
+  letter-spacing: 4px;
+}
+[data-theme="halloween"] .hero h1 {
+  font-size: clamp(40px, 7vw, 72px);
+  color: var(--gold-light);
+  text-shadow: 0 0 30px rgba(255,107,0,0.5);
+}
+[data-theme="christmas"] .hero h1 {
+  color: var(--gold-light);
+  letter-spacing: 4px;
 }
 
 .hero-zh {
@@ -188,11 +370,7 @@ body {
   letter-spacing: 4px;
   margin-bottom: 6px;
 }
-
-[data-theme="botanical"] .hero-zh {
-  color: var(--text-muted);
-  font-size: 16px;
-}
+[data-theme="botanical"] .hero-zh { color: var(--text-muted); font-size: 16px; }
 
 .hero-ornament {
   color: var(--gold);
@@ -200,6 +378,12 @@ body {
   margin: 6px 0;
   opacity: 0.6;
 }
+[data-theme="tiki"] .hero-ornament::before { content: "🌺 "; }
+[data-theme="tiki"] .hero-ornament::after  { content: " 🌺"; }
+[data-theme="halloween"] .hero-ornament::before { content: "🕷 "; }
+[data-theme="halloween"] .hero-ornament::after  { content: " 🕷"; }
+[data-theme="christmas"] .hero-ornament::before { content: "❄ "; }
+[data-theme="christmas"] .hero-ornament::after  { content: " ❄"; }
 
 .hero-tagline {
   font-family: var(--font-display);
@@ -208,11 +392,7 @@ body {
   color: var(--text-hero);
   opacity: 0.65;
 }
-
-[data-theme="botanical"] .hero-tagline {
-  color: var(--text-muted);
-  opacity: 1;
-}
+[data-theme="botanical"] .hero-tagline { color: var(--text-muted); opacity: 1; }
 
 /* ============================================================
    LAYOUT
@@ -229,19 +409,19 @@ body {
 /* ============================================================
    SIDEBAR
    ============================================================ */
-.sidebar {
-  height: fit-content;
-  position: sticky;
-  top: 24px;
-}
+.sidebar { height: fit-content; position: sticky; top: 24px; }
 
 .sidebar-inner {
   background: var(--bg-sidebar);
   border: 1px solid var(--border-card);
   border-radius: var(--sidebar-radius);
   padding: 22px 18px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
   transition: background 0.4s, border-color 0.4s;
+}
+[data-theme="halloween"] .sidebar-inner {
+  box-shadow: 0 4px 20px rgba(255,107,0,0.15);
+  border-color: #5a3010;
 }
 
 .sidebar h2 {
@@ -260,32 +440,23 @@ body {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  font-family: var(--font-body);
   font-size: 16px;
   color: var(--text-dark);
 }
-
 .inventory-item input[type="checkbox"] {
   accent-color: var(--accent);
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  flex-shrink: 0;
+  width: 15px; height: 15px;
+  cursor: pointer; flex-shrink: 0;
 }
 
-.sidebar-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 18px;
-}
-
+.sidebar-actions { display: flex; gap: 8px; margin-top: 18px; }
 .sidebar-actions button {
   flex: 1;
   background: var(--accent);
   color: var(--bg-card);
   border: none;
   padding: 9px 6px;
-  border-radius: 2px;
+  border-radius: var(--status-radius);
   cursor: pointer;
   font-family: var(--font-display);
   font-size: 9px;
@@ -293,13 +464,8 @@ body {
   font-weight: 600;
   transition: opacity 0.2s;
 }
-
-[data-theme="botanical"] .sidebar-actions button {
-  border-radius: 20px;
-  color: #fff;
-}
-
 .sidebar-actions button:hover { opacity: 0.8; }
+[data-theme="halloween"] .sidebar-actions button { color: var(--gold-light); }
 
 .sidebar-hint {
   font-size: 13px;
@@ -308,6 +474,41 @@ body {
   line-height: 1.5;
   font-style: italic;
 }
+
+/* ============================================================
+   ILLUSTRATIONS
+   ============================================================ */
+.card-img-wrap {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-illustration {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.card:hover .card-illustration { transform: scale(1.08) rotate(-3deg); }
+.card-icon-fallback { font-size: 52px; display: block; text-align: center; }
+
+.featured-illustration {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.featured-illustration .card-illustration {
+  width: 120px;
+  height: 120px;
+}
+.featured-illustration .card-icon-fallback { font-size: 80px; }
 
 /* ============================================================
    FEATURED
@@ -324,25 +525,29 @@ body {
   overflow: hidden;
   transition: background 0.4s, border-color 0.4s;
 }
-
 [data-theme="house"] .featured::before,
 [data-theme="house"] .featured::after {
   content: '◆';
   position: absolute;
   color: var(--gold);
-  opacity: 0.18;
+  opacity: 0.15;
   font-size: 70px;
-  line-height: 1;
   pointer-events: none;
 }
 [data-theme="house"] .featured::before { top: -10px; left: 14px; }
 [data-theme="house"] .featured::after  { bottom: -10px; right: 14px; }
-
-/* Botanical featured — watercolor blush blob */
 [data-theme="botanical"] .featured {
   border: none;
   background: linear-gradient(135deg, #fff9f4 0%, #fdf0e8 100%);
   box-shadow: 0 4px 30px rgba(200,151,106,0.12);
+}
+[data-theme="halloween"] .featured {
+  border-color: var(--gold);
+  box-shadow: 0 0 40px rgba(255,107,0,0.15);
+}
+[data-theme="tiki"] .featured {
+  background: linear-gradient(135deg, #fef9ec 0%, #fdecc8 100%);
+  border-color: var(--gold);
 }
 
 .featured-label {
@@ -350,36 +555,28 @@ body {
   font-size: 10px;
   letter-spacing: 4px;
   color: var(--gold-dark);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   text-transform: uppercase;
 }
-
-.featured-icon {
-  font-size: 60px;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
 .featured h3 {
   font-family: var(--font-card);
-  font-size: clamp(30px, 4vw, 50px);
+  font-size: clamp(28px, 4vw, 50px);
   color: var(--text-dark);
   font-weight: 600;
   margin: 6px 0;
   line-height: 1.1;
 }
-
-[data-theme="botanical"] .featured h3 {
-  font-style: italic;
-  color: var(--gold-dark);
-}
+[data-theme="botanical"] .featured h3 { font-style: italic; color: var(--gold-dark); }
+[data-theme="tiki"] .featured h3 { color: var(--gold-dark); letter-spacing: 1px; }
+[data-theme="halloween"] .featured h3 { color: var(--gold-light); }
+[data-theme="christmas"] .featured h3 { color: var(--accent); }
 
 .featured-tags {
-  font-family: var(--font-body);
   font-size: 17px;
   color: var(--text-mid);
   letter-spacing: 1px;
   margin-top: 8px;
+  font-style: italic;
 }
 
 /* ============================================================
@@ -391,20 +588,13 @@ body {
   gap: 16px;
   font-family: var(--font-display);
   font-size: clamp(13px, 2vw, 18px);
-  color: var(--section-title-color);
+  color: var(--section-color);
   letter-spacing: 5px;
   text-transform: uppercase;
   margin: 48px 0 22px;
 }
-
-.section-title::before,
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-}
-.section-title::before { background: linear-gradient(90deg, transparent, var(--section-rule)); }
-.section-title::after  { background: linear-gradient(90deg, var(--section-rule), transparent); }
+.section-title::before { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--section-rule)); }
+.section-title::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--section-rule), transparent); }
 
 /* ============================================================
    CARDS GRID
@@ -416,27 +606,64 @@ body {
 }
 
 /* ============================================================
-   CARD
+   FLIP CARD
    ============================================================ */
+.card-flip-wrap {
+  perspective: 1000px;
+  cursor: pointer;
+  height: 360px; /* fixed height so flip works */
+}
+
+.card-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-flip-wrap.flipped .card-flipper {
+  transform: rotateY(180deg);
+}
+
 .card {
+  position: absolute;
+  inset: 0;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--card-radius);
-  padding: 20px 16px 16px;
+  padding: 18px 16px 14px;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   box-shadow: 0 4px 16px rgba(0,0,0,0.09);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.4s;
-  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
 }
 
-.card:hover {
-  transform: translateY(-3px);
+.card-front {
+  /* sits at 0deg — visible by default */
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: var(--bg-deep);
+  border-color: var(--border);
+  justify-content: center;
+}
+
+[data-theme="botanical"] .card-back  { background: #f2f5ef; border-color: var(--gold); }
+[data-theme="tiki"]      .card-back  { background: #0f2e1c; border-color: var(--gold); }
+[data-theme="halloween"] .card-back  { background: #1a0a00; border-color: var(--gold); }
+[data-theme="christmas"] .card-back  { background: #071a0f; border-color: var(--gold); }
+
+/* No hover lift on flip wrap — let flip handle interaction */
+.card-flip-wrap:hover .card-front {
   box-shadow: 0 10px 28px rgba(0,0,0,0.14);
 }
 
-/* Art Deco inner frame */
-[data-theme="house"] .card::after {
+[data-theme="house"] .card-front::after {
   content: '';
   position: absolute;
   inset: 5px;
@@ -444,17 +671,74 @@ body {
   border-radius: 2px;
   pointer-events: none;
 }
-
-[data-theme="botanical"] .card {
-  box-shadow: 0 4px 20px rgba(200,151,106,0.10);
+[data-theme="halloween"] .card-front {
+  border-color: #5a3010;
 }
 
-.card-icon {
-  font-size: 34px;
+/* Card back content */
+.card-back-icon {
+  font-size: 40px;
   text-align: center;
   margin-bottom: 8px;
-  line-height: 1;
 }
+
+.card-back h3 {
+  font-family: var(--font-card);
+  font-size: 18px;
+  text-align: center;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+[data-theme="botanical"] .card-back h3 { color: var(--gold-dark); font-style: italic; }
+
+.card-back-label {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin: 8px 0 10px;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ingredients-list li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--gold-light);
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+[data-theme="botanical"] .ingredients-list li { color: var(--text-mid); background: rgba(200,151,106,0.07); border-color: var(--border-card); }
+[data-theme="tiki"]      .ingredients-list li { color: var(--gold-light); }
+[data-theme="halloween"] .ingredients-list li { color: var(--gold-light); }
+[data-theme="christmas"] .ingredients-list li { color: var(--gold-light); }
+
+/* Flip hint */
+.flip-hint {
+  font-family: var(--font-display);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+.card-back .flip-hint { color: var(--gold); opacity: 0.5; }
 
 .card h3 {
   font-family: var(--font-card);
@@ -465,12 +749,9 @@ body {
   font-weight: 600;
   margin-bottom: 2px;
 }
-
-[data-theme="botanical"] .card h3 {
-  font-style: italic;
-  font-size: 20px;
-  color: var(--gold-dark);
-}
+[data-theme="botanical"] .card h3 { font-style: italic; color: var(--gold-dark); }
+[data-theme="halloween"] .card h3 { color: var(--text-dark); }
+[data-theme="tiki"] .card h3 { color: var(--gold-dark); font-size: 21px; }
 
 .card-zh {
   font-family: var(--font-zh);
@@ -482,8 +763,7 @@ body {
 }
 
 .card-divider {
-  width: 28px;
-  height: 1px;
+  width: 28px; height: 1px;
   background: var(--border-card);
   margin: 6px auto 8px;
 }
@@ -499,16 +779,8 @@ body {
 
 /* ============================================================
    ABV BLOCKS
-   House theme: Original top, Light bottom
-   Botanical theme: Light top, Original bottom
    ============================================================ */
-.abv-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
+.abv-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .abv-block {
   display: flex;
   justify-content: space-between;
@@ -518,10 +790,9 @@ body {
   border-radius: 2px;
   padding: 6px 10px;
 }
-
-[data-theme="botanical"] .abv-block {
-  border-radius: 8px;
-}
+[data-theme="botanical"] .abv-block,
+[data-theme="tiki"] .abv-block,
+[data-theme="christmas"] .abv-block { border-radius: 8px; }
 
 .abv-label {
   font-family: var(--font-display);
@@ -530,23 +801,14 @@ body {
   color: var(--text-muted);
   text-transform: uppercase;
 }
-
 .abv-value {
   font-family: var(--font-card);
   font-size: 17px;
   font-weight: 600;
   color: var(--text-dark);
 }
-
-/* Highlight light ABV in botanical */
-[data-theme="botanical"] .abv-block--light .abv-value {
-  color: var(--gold-dark);
-}
-
-[data-theme="botanical"] .abv-block--light {
-  border-color: var(--gold);
-  background: rgba(200,151,106,0.07);
-}
+[data-theme="botanical"] .abv-block--light { border-color: var(--gold); background: rgba(200,151,106,0.07); }
+[data-theme="botanical"] .abv-block--light .abv-value { color: var(--gold-dark); }
 
 /* ============================================================
    STATUS BADGE
@@ -555,61 +817,150 @@ body {
   margin-top: auto;
   padding: 9px 10px;
   text-align: center;
-  border-radius: 2px;
+  border-radius: var(--status-radius);
   font-family: var(--font-display);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: white;
   transition: background 0.3s;
 }
 
-[data-theme="botanical"] .status {
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-}
+.available   { background: var(--status-avail);   color: var(--status-text); }
+.limited     { background: var(--status-limit);   color: var(--status-text); }
+.unavailable { background: var(--status-unavail); color: var(--status-text); }
 
-/* House theme — rich saturated */
-[data-theme="house"] .available   { background: #2a7a4b; }
-[data-theme="house"] .limited     { background: #b8860b; }
-[data-theme="house"] .unavailable { background: #8b2a2a; }
-
-/* Botanical theme — watercolor washes */
-[data-theme="botanical"] .available {
-  background: #b8dfc8;
-  color: #2a5c3a;
-  border: 1px solid #9ecfb2;
-}
-[data-theme="botanical"] .limited {
-  background: #f5d9b8;
-  color: #7a4a1a;
-  border: 1px solid #e8c49a;
-}
-[data-theme="botanical"] .unavailable {
-  background: #f2c4c4;
-  color: #7a2a2a;
-  border: 1px solid #e8aaaa;
-}
+/* Botanical text override for legibility */
+[data-theme="botanical"] .available   { color: #2a5c3a; border: 1px solid #9ecfb2; }
+[data-theme="botanical"] .limited     { color: #7a4a1a; border: 1px solid #e8c49a; }
+[data-theme="botanical"] .unavailable { color: #7a2a2a; border: 1px solid #e8aaaa; }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 960px) {
-  .layout {
-    grid-template-columns: 1fr;
-    padding: 16px;
-  }
+  .layout { grid-template-columns: 1fr; padding: 16px; }
   .sidebar { position: static; }
-  .hero h1 { font-size: 46px; }
-  .featured h3 { font-size: 34px; }
+  .hero h1 { font-size: 44px; }
+  .featured h3 { font-size: 32px; }
   .cards { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
-
 @media (max-width: 480px) {
   .hero { padding: 0 16px 20px; }
-  .hero h1 { font-size: 34px; }
+  .hero h1 { font-size: 32px; }
   .cards { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   THEME BACKGROUND DECORATIONS
+   ============================================================ */
+
+/* Shared deco container — sits behind all content */
+.theme-decos {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.theme-deco {
+  position: absolute;
+  font-size: 64px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Make layout sit above decorations */
+.hero, .layout { position: relative; z-index: 1; }
+
+/* Art Deco — SVG ornaments, no emoji */
+[data-theme="house"] .theme-deco { opacity: 0.06; font-size: 56px; }
+
+/* Botanical */
+[data-theme="botanical"] .theme-deco { opacity: 0.12; }
+
+/* Tiki */
+[data-theme="tiki"] .theme-deco { opacity: 0.14; }
+
+/* Tiki hero override — parchment feel */
+[data-theme="tiki"] .hero {
+  background: var(--bg-deep);
+  background-image: var(--hero-pattern);
+  border-bottom: 5px solid transparent;
+  border-image: repeating-linear-gradient(90deg,
+    #8b5e1a 0px,#8b5e1a 8px,#c8860a 8px,#c8860a 16px,
+    #a07020 16px,#a07020 24px,#c8860a 24px,#c8860a 32px) 5;
+}
+
+/* Tiki text-hero override */
+[data-theme="tiki"] .hero h1 { color: #7a2c0a; letter-spacing: 4px; }
+[data-theme="tiki"] .hero-subtitle { color: #8b5e1a; font-size: 12px; }
+[data-theme="tiki"] .hero-zh { color: #8b5e1a; }
+[data-theme="tiki"] .hero-tagline { color: #8b5e1a; opacity: 0.8; }
+[data-theme="tiki"] .hero-ornament { color: #c8860a; }
+[data-theme="tiki"] .section-title { color: #7a2c0a; }
+[data-theme="tiki"] .hero-controls #langBtn { color: #5a2800; border-color: #c8860a; }
+[data-theme="tiki"] .theme-btn { color: #5a2800; border-color: #c8860a; }
+
+/* Tiki bamboo card top border */
+[data-theme="tiki"] .card-front,
+[data-theme="tiki"] .card-back {
+  border-top: 5px solid transparent;
+  border-image: repeating-linear-gradient(90deg,
+    #8b5e1a 0px,#8b5e1a 6px,#c8860a 6px,#c8860a 12px,
+    #a07020 12px,#a07020 18px,#c8860a 18px,#c8860a 24px) 5;
+}
+
+/* Tiki featured bamboo border */
+[data-theme="tiki"] .featured {
+  border-top: 5px solid transparent;
+  border-image: repeating-linear-gradient(90deg,
+    #8b5e1a 0px,#8b5e1a 6px,#c8860a 6px,#c8860a 12px,
+    #a07020 12px,#a07020 18px,#c8860a 18px,#c8860a 24px) 5;
+  background: rgba(255,250,225,0.9);
+}
+
+/* Tiki featured name */
+[data-theme="tiki"] .featured h3 { color: #5a2800; }
+[data-theme="tiki"] .featured-label { color: #8b5e1a; }
+[data-theme="tiki"] .featured-tags { color: #6a3a00; }
+
+/* Tiki card text */
+[data-theme="tiki"] .card h3 { font-size: 15px; color: #3a1a00; }
+[data-theme="tiki"] .card-back h3 { color: #ffd166; }
+[data-theme="tiki"] .card-back { background: #3a1a00; border-color: #c8860a; }
+[data-theme="tiki"] .ingredients-list li { color: #ffd166; }
+[data-theme="tiki"] .card-back-label { color: #c8860a; }
+
+/* Halloween */
+[data-theme="halloween"] .theme-deco { opacity: 0.10; }
+
+/* Christmas */
+[data-theme="christmas"] .theme-deco { opacity: 0.12; }
+[data-theme="christmas"] .hero { background: #fff8f5; border-bottom: 3px solid #cc1a1a; }
+[data-theme="christmas"] .hero h1 { color: #cc1a1a; }
+[data-theme="christmas"] .hero-subtitle { color: #1a6b2a; font-size: 22px; letter-spacing: 4px; }
+[data-theme="christmas"] .hero-zh { color: #8a4a40; }
+[data-theme="christmas"] .hero-tagline { color: #5c1a10; opacity: 0.7; }
+[data-theme="christmas"] .hero-ornament { color: #c8960c; }
+[data-theme="christmas"] .hero-controls #langBtn { color: #1a0a08; border-color: #cc1a1a; }
+[data-theme="christmas"] .theme-btn { color: #1a0a08; border-color: #cc1a1a; }
+[data-theme="christmas"] .featured { border-top: 4px solid #cc1a1a; border-color: #e8c0c0; }
+[data-theme="christmas"] .featured h3 { color: #cc1a1a; }
+[data-theme="christmas"] .featured-label { color: #1a6b2a; }
+[data-theme="christmas"] .card-front { border-top: 4px solid #cc1a1a; }
+[data-theme="christmas"] .card-back { background: #0c2e1a; border-color: #cc1a1a; }
+[data-theme="christmas"] .card-back h3 { color: #f0c040; }
+[data-theme="christmas"] .ingredients-list li { color: #f0c040; }
+[data-theme="christmas"] .card-back-label { color: #cc1a1a; }
+
+/* Art deco SVG deco ornaments container */
+.house-svg-decos {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
