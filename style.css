@@ -611,7 +611,11 @@ body {
 .card-flip-wrap {
   perspective: 1000px;
   cursor: pointer;
-  height: 360px; /* fixed height so flip works */
+  height: 420px;
+}
+
+@media (max-width: 480px) {
+  .card-flip-wrap { height: 460px; }
 }
 
 .card-flipper {
@@ -797,9 +801,12 @@ body {
 .abv-label {
   font-family: var(--font-display);
   font-size: 9px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--text-muted);
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .abv-value {
   font-family: var(--font-card);
