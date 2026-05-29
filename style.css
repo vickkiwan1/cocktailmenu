@@ -851,20 +851,19 @@ body {
 @media (max-width: 480px) {
   .hero { padding: 0 16px 20px; }
   .hero h1 { font-size: 32px; }
-  .cards { grid-template-columns: 1fr 1fr; }
-  .card-flip-wrap { height: 440px; }
-  .card-img-wrap { width: 52px; height: 52px; margin-bottom: 6px; }
-  .card-illustration { width: 52px; height: 52px; }
-  .card-icon-fallback { font-size: 36px; }
-  .abv-label { font-size: 7px; letter-spacing: 0.5px; }
-  .abv-value { font-size: 13px; }
-  .card h3 { font-size: 15px; }
-  .card-zh { font-size: 11px; }
-  .tags { font-size: 11px; margin-bottom: 8px; }
-  .card-divider { margin: 4px auto 6px; }
-  .abv-row { gap: 4px; margin-bottom: 8px; }
-  .abv-block { padding: 4px 6px; }
-  .flip-hint { font-size: 7px; margin-top: 4px; }
+  .cards { grid-template-columns: 1fr; }
+  .card-flip-wrap { height: 360px; }
+  .card-img-wrap { width: 70px; height: 70px; margin-bottom: 8px; }
+  .card-illustration { width: 70px; height: 70px; }
+  .card-icon-fallback { font-size: 48px; }
+  .abv-label { font-size: 9px; letter-spacing: 1px; }
+  .abv-value { font-size: 16px; }
+  .card h3 { font-size: 20px; }
+  .card-zh { font-size: 13px; }
+  .tags { font-size: 13px; margin-bottom: 12px; }
+  .abv-row { gap: 6px; margin-bottom: 10px; }
+  .abv-block { padding: 6px 10px; }
+  .flip-hint { font-size: 8px; margin-top: 6px; }
 }
 
 /* ============================================================
