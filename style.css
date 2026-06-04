@@ -872,7 +872,7 @@ body {
 .card-flip-wrap {
   perspective: 1000px;
   cursor: pointer;
-  height: 420px;
+  height: 440px;
 }
 
 .card-flipper {
@@ -999,4 +999,244 @@ body {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+}
+
+/* ============================================================
+   SEASONAL SECTION — base
+   ============================================================ */
+.seasonal-section {
+  position: relative;
+  border-radius: 12px;
+  padding: 28px 20px 24px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+/* Corner decorations */
+.seasonal-corner {
+  position: absolute;
+  font-size: 48px;
+  opacity: 0.13;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.seasonal-title {
+  text-align: center;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.seasonal-sub {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Bamboo rule (tiki) */
+.seasonal-bamboo-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+.seasonal-bamboo-line {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: repeating-linear-gradient(90deg,
+    #8b5e1a 0,#8b5e1a 6px,#c8860a 6px,#c8860a 12px,
+    #a07020 12px,#a07020 18px,#c8860a 18px,#c8860a 24px);
+}
+.seasonal-bamboo-emoji { font-size: 20px; }
+
+/* Holly row (christmas) */
+.seasonal-holly {
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+
+/* Snowflakes row (christmas) */
+.seasonal-snowflakes {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20px;
+  margin-bottom: 4px;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+.seasonal-snowflakes span { font-size: 13px; opacity: 0.2; color: #1a6b2a; }
+
+/* ── TIKI ── */
+.seasonal-tiki {
+  background: #f0e6c0;
+  background-image:
+    radial-gradient(ellipse at 8% 20%, rgba(160,100,20,0.25) 0%, transparent 40%),
+    radial-gradient(ellipse at 92% 80%, rgba(140,80,10,0.2) 0%, transparent 40%),
+    repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(150,100,20,0.03) 38px, rgba(150,100,20,0.03) 39px);
+  border: 2px solid #c8860a;
+}
+.seasonal-tiki .seasonal-title {
+  font-family: 'Righteous', cursive;
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: #7a2c0a;
+  margin-bottom: 14px;
+}
+.seasonal-tiki .card-front {
+  background: rgba(255,250,225,0.9);
+  border: 1.5px solid #d4a843;
+  border-top: 4px solid transparent;
+  border-image: repeating-linear-gradient(90deg,
+    #8b5e1a 0,#8b5e1a 5px,#c8860a 5px,#c8860a 10px,
+    #a07020 10px,#a07020 15px) 4;
+}
+.seasonal-tiki .card h3 { font-family: 'Righteous', cursive; font-size: 14px; color: #5a2800; font-style: normal; }
+.seasonal-tiki .card-zh { color: #8b5e1a; }
+.seasonal-tiki .tags { color: #7a5020; }
+.seasonal-tiki .abv-label { color: #8b5e1a; }
+.seasonal-tiki .abv-value { color: #3a1a00; }
+.seasonal-tiki .abv-block { background: rgba(200,134,10,0.1); border-color: rgba(200,134,10,0.28); }
+.seasonal-tiki .available   { background: #2a7a3a; border-radius: 20px; }
+.seasonal-tiki .limited     { background: #c87000; border-radius: 20px; }
+.seasonal-tiki .unavailable { background: #8b2a1a; border-radius: 20px; }
+.seasonal-tiki .card-back   { background: #3a1a00; border-color: #c8860a; }
+.seasonal-tiki .card-back h3 { color: #ffd166; font-family: 'Righteous', cursive; }
+.seasonal-tiki .card-back-label { color: #c8860a; }
+.seasonal-tiki .ingredients-list li { color: #ffd166; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+.seasonal-tiki .flip-hint { color: #8b5e1a; }
+.seasonal-tiki .card-back .flip-hint { color: #c8860a; }
+
+/* ── HALLOWEEN ── */
+.seasonal-halloween {
+  background: #0d0d0d;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(139,0,204,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 100%, rgba(255,107,0,0.12) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 100%, rgba(255,107,0,0.1) 0%, transparent 40%);
+  border: 2px solid #ff6b00;
+  box-shadow: 0 0 40px rgba(255,107,0,0.15), inset 0 0 60px rgba(139,0,204,0.08);
+}
+.seasonal-halloween .seasonal-title {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(22px, 3vw, 28px);
+  color: #ff9a3c;
+  text-shadow: 0 0 20px rgba(255,107,0,0.4);
+  margin-bottom: 4px;
+}
+.seasonal-halloween .seasonal-sub { color: #8a6030; }
+.seasonal-halloween .card-front {
+  background: #2d1a0a;
+  border-color: #5a3010;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #8b00cc, #ff6b00, #8b00cc) 3;
+}
+.seasonal-halloween .card h3 { color: #ff9a3c; font-style: normal; }
+.seasonal-halloween .card-zh { color: #8a6030; }
+.seasonal-halloween .tags { color: #c8a050; }
+.seasonal-halloween .abv-label { color: #8a6030; }
+.seasonal-halloween .abv-value { color: #f0d080; }
+.seasonal-halloween .abv-block { background: rgba(255,107,0,0.06); border-color: #5a3010; }
+.seasonal-halloween .card-divider { background: #5a3010; }
+.seasonal-halloween .available   { background: #1a4a2a; color: #50c878; }
+.seasonal-halloween .limited     { background: #5a3800; color: #ffd166; }
+.seasonal-halloween .unavailable { background: #4a1010; color: #ff6b6b; }
+.seasonal-halloween .card-back   { background: #7a3000; border-color: #ff6b00; }
+.seasonal-halloween .card-back h3 { color: #ff9a3c; }
+.seasonal-halloween .card-back .card-back-icon { filter: drop-shadow(0 0 6px rgba(255,107,0,0.4)); }
+.seasonal-halloween .card-back .card-back-label { color: #ff6b00; }
+.seasonal-halloween .card-back .card-divider { background: #ff6b00; opacity: 0.3; }
+.seasonal-halloween .card-back .ingredients-list li {
+  color: #ffd166;
+  background: rgba(255,107,0,0.12);
+  border-color: rgba(255,107,0,0.25);
+}
+.seasonal-halloween .card-back .flip-hint { color: #ff6b00; opacity: 0.5; }
+.seasonal-halloween .card-back-label { color: #ff6b00; }
+.seasonal-halloween .ingredients-list li { color: #f0d080; background: rgba(255,107,0,0.05); border-color: #5a3010; }
+.seasonal-halloween .flip-hint { color: #8a6030; }
+.seasonal-halloween .card-back .flip-hint { color: #ff6b00; }
+
+/* ── CHRISTMAS ── */
+.seasonal-christmas {
+  background: #fffcfa;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(204,26,26,0.03) 28px, rgba(204,26,26,0.03) 29px),
+    repeating-linear-gradient(0deg,  transparent, transparent 28px, rgba(26,107,42,0.03)  28px, rgba(26,107,42,0.03)  29px);
+  border: 2px solid #cc1a1a;
+}
+.seasonal-christmas .seasonal-title {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: clamp(24px, 3vw, 30px);
+  color: #cc1a1a;
+  margin-bottom: 4px;
+}
+.seasonal-christmas .card-front {
+  background: #fffcfa;
+  border: 1px solid #e8c0c0;
+  border-top: 4px solid #cc1a1a;
+}
+.seasonal-christmas .card h3 { color: #cc1a1a; font-style: normal; }
+.seasonal-christmas .card-zh { color: #8a4a40; }
+.seasonal-christmas .tags { color: #5c1a10; }
+.seasonal-christmas .abv-label { color: #8a4a40; }
+.seasonal-christmas .abv-value { color: #1a0a08; }
+.seasonal-christmas .abv-block { background: rgba(204,26,26,0.05); border-color: #e8c0c0; }
+.seasonal-christmas .card-divider { background: #e8c0c0; }
+.seasonal-christmas .available   { background: #1a6b2a; border-radius: 10px; }
+.seasonal-christmas .limited     { background: #8b6500; border-radius: 10px; }
+.seasonal-christmas .unavailable { background: #cc1a1a; border-radius: 10px; }
+.seasonal-christmas .card-back   { background: #0c2e1a; border-color: #cc1a1a; }
+.seasonal-christmas .card-back h3 { color: #f0c040; }
+.seasonal-christmas .card-back-label { color: #cc1a1a; }
+.seasonal-christmas .ingredients-list li { color: #f0c040; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+.seasonal-christmas .flip-hint { color: #8a4a40; }
+.seasonal-christmas .card-back .flip-hint { color: #cc1a1a; }
+
+/* ============================================================
+   UPGRADE BADGES
+   ============================================================ */
+.upgrade-badge {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: center;
+  font-family: var(--font-body);
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+.upgrade-bbr {
+  background: rgba(255, 220, 100, 0.15);
+  border: 1px dashed #c8860a;
+  color: var(--text-mid);
+}
+
+.upgrade-choc {
+  background: rgba(80, 40, 10, 0.08);
+  border: 1px dashed #7a3a10;
+  color: var(--text-mid);
+}
+
+/* Dark themes — lighten badge text */
+[data-theme="halloween"] .upgrade-bbr,
+[data-theme="halloween"] .upgrade-choc {
+  color: #c8a050;
+  border-color: #8a6030;
+  background: rgba(255,200,80,0.07);
 }
