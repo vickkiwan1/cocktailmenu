@@ -13,6 +13,17 @@ const BASE_SPIRITS = new Set([
   "Maker's Mark Whisky","Caruva Horchata","Iichiko Shochu",
 ]);
 
+// Non-spirit ingredients that are so central to a drink they make it
+// Unavailable (not just Limited) when missing
+const SIGNATURE_INGREDIENTS = new Set([
+  "Pandan Syrup",       // Pandan Coconut Milk Punch
+  "Black Sesame Syrup", // Black Sesame Shochu
+  "Kuromitsu",          // Black Sesame Shochu
+  "Heavy Cream",        // Black Sesame Shochu — the cream float is the signature
+  "Espresso",           // Black Sesame Shochu
+  "Pumpkin Spice Syrup",// Pumpkin Spice Old Fashioned
+]);
+
 const THEMES = [
   { id: "house",     label: "🏛 Art Deco",  emoji: "🏛" },
   { id: "botanical", label: "🌿 Botanical", emoji: "🌿" },
@@ -126,8 +137,13 @@ function isIngredientAvailable(ing) {
 
 function getStatus(cocktail) {
   const ings = cocktail.ingredients.split("|").map(i => i.trim());
-  if (ings.filter(i => BASE_SPIRITS.has(i) && !isIngredientAvailable(i)).length > 0) return "unavailable";
-  if (ings.filter(i => !BASE_SPIRITS.has(i) && !isIngredientAvailable(i)).length > 0) return "limited";
+  // Missing any base spirit OR signature ingredient = Unavailable
+  const missingCritical = ings.filter(i =>
+    (BASE_SPIRITS.has(i) || SIGNATURE_INGREDIENTS.has(i)) && !isIngredientAvailable(i)
+  );
+  if (missingCritical.length > 0) return "unavailable";
+  // Missing a regular mixer = Limited
+  if (ings.filter(i => !BASE_SPIRITS.has(i) && !SIGNATURE_INGREDIENTS.has(i) && !isIngredientAvailable(i)).length > 0) return "limited";
   return "available";
 }
 
@@ -194,6 +210,13 @@ function buildCard(cocktail) {
            : "巧克力迈泰升级版可供应 — 请询问调酒师"}
        </div>` : "";
 
+  const velvetBadge = cocktail.velvet_upgrade === "TRUE"
+    ? `<div class="upgrade-badge upgrade-velvet">
+         🍇 ${currentLang === "en"
+           ? "Velvet Orchard upgrade — add Lychee Liqueur, ask your bartender"
+           : "丝绒果园升级版 — 加入荔枝利口酒，请询问调酒师"}
+       </div>` : "";
+
   return `
     <div class="card-flip-wrap">
       <div class="card-flipper">
@@ -205,7 +228,7 @@ function buildCard(cocktail) {
           <div class="tags">${tags.split("|").join(" • ")}</div>
           ${abvHtml}
           <div class="status ${status}">${statusLabel}</div>
-          ${bbrBadge}${chocBadge}
+          ${bbrBadge}${chocBadge}${velvetBadge}
           <div class="flip-hint">🔄 ${currentLang === "en" ? "tap for ingredients" : "点击查看配料"}</div>
         </div>
         <div class="card card-back">
