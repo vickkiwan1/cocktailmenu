@@ -1252,3 +1252,512 @@ body {
   border-color: #7a3a8a;
   background: rgba(120,50,140,0.1);
 }
+
+/* ============================================================
+   SEARCH BAR
+   ============================================================ */
+.search-bar-outer {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-card);
+  padding: 10px 28px;
+  transition: background 0.4s;
+}
+
+[data-theme="botanical"] .search-bar-outer { background: #ede6d8; }
+[data-theme="tiki"]      .search-bar-outer { background: #e8d9a8; }
+[data-theme="halloween"] .search-bar-outer { background: #1a0a00; border-color: #5a3010; }
+[data-theme="christmas"] .search-bar-outer { background: #fff8f5; border-color: #e8c0c0; }
+
+.search-wrap { max-width: 1400px; margin: 0 auto; }
+
+/* Input row */
+.search-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--card-radius);
+  padding: 8px 14px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input-row:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(212,168,67,0.15);
+}
+
+.search-icon { font-size: 16px; opacity: 0.5; flex-shrink: 0; }
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dark);
+}
+.search-input::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+.search-clear {
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 2px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.search-clear:hover {
+  background: var(--status-bg);
+  color: var(--text-dark);
+}
+
+/* Chips */
+.search-chips-label {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.search-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.search-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.search-chip:hover {
+  border-color: var(--gold);
+  color: var(--text-dark);
+}
+.search-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-card);
+  font-weight: 600;
+}
+
+/* No results */
+.search-no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.search-no-results-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.4; }
+.search-no-results-text {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  color: var(--text-mid);
+}
+.search-no-results-sub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Mobile */
+@media (max-width: 960px) {
+  .search-bar-outer { padding: 10px 16px; }
+  .search-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .search-chips::-webkit-scrollbar { display: none; }
+}
+
+/* ============================================================
+   BARTENDER MODE
+   ============================================================ */
+
+/* Indicator bar when bartender mode is active */
+body.bartender-mode::after {
+  content: '🔧 BARTENDER MODE';
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--accent);
+  color: var(--bg-card);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 6px;
+  z-index: 200;
+}
+
+/* Bartender card back */
+.card-back--bartender {
+  background: var(--bg-deep);
+  border-color: var(--border);
+  overflow-y: auto;
+  padding: 14px 12px 10px;
+}
+
+[data-theme="botanical"] .card-back--bartender { background: #f2f5ef; }
+[data-theme="tiki"]      .card-back--bartender { background: #3a1a00; }
+[data-theme="halloween"] .card-back--bartender { background: #2a1200; }
+[data-theme="christmas"] .card-back--bartender { background: #0c2e1a; }
+
+.bt-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.bt-header .card-back-icon { font-size: 28px; flex-shrink: 0; }
+.bt-header h3 {
+  font-family: var(--font-card);
+  font-size: 16px;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}
+[data-theme="botanical"] .bt-header h3 { color: var(--gold-dark); }
+
+/* Servings row */
+.bt-servings-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.bt-label {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+}
+.bt-srv-btn {
+  background: var(--accent);
+  border: none;
+  color: var(--bg-card);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.2s;
+}
+.bt-srv-btn:hover { opacity: 0.8; }
+.bt-srv-val {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-light);
+  min-width: 18px;
+  text-align: center;
+}
+[data-theme="botanical"] .bt-srv-val { color: var(--text-dark); }
+
+/* Tabs */
+.bt-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.bt-tab {
+  flex: 1;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 3px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s, background 0.15s;
+}
+.bt-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-card);
+  opacity: 1;
+}
+[data-theme="botanical"] .bt-tab { border-color: var(--border-card); color: var(--text-mid); }
+[data-theme="botanical"] .bt-tab.active { color: white; }
+
+/* Tab panels */
+.bt-tab-panel { display: none; }
+.bt-tab-panel.active { display: block; }
+
+/* Recipe text */
+.bt-recipe {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--gold-light);
+  line-height: 1.5;
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+  border-left: 2px solid var(--gold);
+}
+[data-theme="botanical"] .bt-recipe { color: var(--text-dark); background: rgba(200,151,106,0.07); border-color: var(--gold); }
+
+/* Instructions */
+.bt-inst {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+[data-theme="botanical"] .bt-inst { color: var(--text-mid); }
+[data-theme="house"] .bt-inst,
+[data-theme="tiki"] .bt-inst,
+[data-theme="halloween"] .bt-inst,
+[data-theme="christmas"] .bt-inst { color: rgba(255,255,255,0.5); }
+
+/* Timers */
+.bt-timers {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.bt-timer-btn {
+  flex: 1;
+  background: none;
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 6px 4px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.bt-timer-btn:hover { background: var(--gold); color: var(--bg-deep); }
+
+/* Timer display */
+.bt-timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.bt-timer-count {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold-light);
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+.bt-timer-done {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: #2a7a4b;
+  letter-spacing: 2px;
+}
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* Bartender card flip height — taller to fit recipe */
+.bartender-card { height: 520px; }
+@media (max-width: 480px) { .bartender-card { height: 560px; } }
+
+/* ── PIN MODAL ── */
+.pin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  backdrop-filter: blur(4px);
+}
+
+.pin-modal {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 28px 24px;
+  width: min(320px, 90vw);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.pin-modal-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.pin-modal-sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+/* PIN dots */
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.pin-dots span {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border-card);
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.pin-dots span.filled {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* PIN pad */
+.pin-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.pin-key {
+  background: var(--status-bg);
+  border: 1px solid var(--border-card);
+  border-radius: var(--card-radius);
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-dark);
+  padding: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: center;
+}
+.pin-key:hover { background: var(--border-card); }
+.pin-key:active { transform: scale(0.95); }
+.pin-key--empty { visibility: hidden; pointer-events: none; }
+
+.pin-error {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #cc1a1a;
+  text-align: center;
+  min-height: 16px;
+  margin-bottom: 8px;
+}
+
+/* Modal actions */
+.pin-modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.pin-confirm, .pin-cancel {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: var(--card-radius);
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.pin-confirm { background: #cc1a1a; color: white; }
+.pin-cancel  { background: var(--status-bg); color: var(--text-dark); border: 1px solid var(--border-card); }
+.pin-confirm:hover, .pin-cancel:hover { opacity: 0.8; }
+
+/* ============================================================
+   GUEST CARD BACK — flavour profile view
+   ============================================================ */
+.card-back-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.card-back-tag {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+[data-theme="botanical"] .card-back-tag {
+  color: var(--gold-dark);
+  border-color: var(--border-card);
+}
+[data-theme="tiki"] .card-back-tag { color: #ffd166; border-color: rgba(255,209,102,0.3); }
+[data-theme="halloween"] .card-back-tag { color: #ff9a3c; border-color: rgba(255,107,0,0.3); }
+[data-theme="christmas"] .card-back-tag { color: #f0c040; border-color: rgba(240,192,64,0.3); }
+
+.card-back-abv-summary {
+  display: flex;
+  justify-content: space-around;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--gold);
+  margin: 10px 0 12px;
+  padding: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+
+.card-back-abv-summary strong {
+  color: var(--gold-light);
+}
+
+[data-theme="botanical"] .card-back-abv-summary {
+  background: rgba(200,151,106,0.07);
+  color: var(--text-mid);
+}
+[data-theme="botanical"] .card-back-abv-summary strong { color: var(--gold-dark); }
+
+/* ============================================================
+   HIDE SIDEBAR IN GUEST (NON-BARTENDER) MODE
+   ============================================================ */
+body:not(.bartender-mode) .sidebar {
+  display: none;
+}
+
+body:not(.bartender-mode) .layout {
+  grid-template-columns: 1fr;
+}
