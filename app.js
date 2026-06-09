@@ -97,7 +97,15 @@ let inventoryRows   = [];
 let usedIngredients = new Set();
 let sheetsInventory = {};
 let userOverrides   = {};
-let seasonalTheme   = "none"; // read from Settings sheet
+let seasonalTheme   = "none";
+
+// Search state
+let searchQuery     = "";
+let activeChips     = new Set(); // selected ingredient chips
+
+// Bartender mode
+let bartenderMode   = false;
+const BARTENDER_PIN = "2025"; // change this to your preferred PIN
 
 // ── OpenMoji ─────────────────────────────────────────────────────────────────
 function emojiToOpenMoji(emoji) {
@@ -195,7 +203,54 @@ function buildCard(cocktail) {
 
   const ingList = cocktail.ingredients.split("|").map(i => `<li>${i.trim()}</li>`).join("");
 
-  // Upgrade badges
+  // Bartender card back — full recipe + timers
+  const servingsId = `srv-${cocktail.id || Math.random().toString(36).slice(2)}`;
+  const recipeOrig  = cocktail.recipe_original  || "";
+  const recipeLight = cocktail.recipe_light     || "";
+  const instOrig    = cocktail.instructions_original || "";
+  const instLight   = cocktail.instructions_light    || "";
+
+  const bartenderBack = `
+    <div class="card card-back card-back--bartender">
+      <div class="bt-header">
+        <div class="card-back-icon">${cocktail.icon}</div>
+        <div>
+          <h3>${name}</h3>
+          <div class="bt-servings-row">
+            <span class="bt-label">${currentLang === "en" ? "Servings" : "份量"}</span>
+            <button class="bt-srv-btn" data-id="${servingsId}" data-delta="-1">−</button>
+            <span class="bt-srv-val" id="${servingsId}">1</span>
+            <button class="bt-srv-btn" data-id="${servingsId}" data-delta="1">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+
+      <div class="bt-tabs">
+        <button class="bt-tab active" data-tab="orig-${servingsId}">${currentLang === "en" ? "Original" : "原版"}</button>
+        <button class="bt-tab" data-tab="light-${servingsId}">${currentLang === "en" ? "Light" : "轻量版"}</button>
+      </div>
+
+      <div class="bt-tab-panel active" id="orig-${servingsId}">
+        <div class="bt-recipe">${recipeOrig}</div>
+        <div class="bt-inst">${instOrig}</div>
+      </div>
+      <div class="bt-tab-panel" id="light-${servingsId}">
+        <div class="bt-recipe">${recipeLight}</div>
+        <div class="bt-inst">${instLight}</div>
+      </div>
+
+      <div class="bt-timers">
+        <button class="bt-timer-btn" data-secs="12">⏱ ${currentLang === "en" ? "Shake 12s" : "摇12秒"}</button>
+        <button class="bt-timer-btn" data-secs="25">⏱ ${currentLang === "en" ? "Stir 25s" : "搅拌25秒"}</button>
+      </div>
+      <div class="bt-timer-display" id="timer-${servingsId}" style="display:none"></div>
+
+      <div class="status ${status}">${statusLabel}</div>
+      <div class="flip-hint">🔄 ${flipHint}</div>
+    </div>`;
+
+  // Upgrade badges — must be defined before guestBack uses them
   const bbrBadge = cocktail.bbr_upgrade === "TRUE"
     ? `<div class="upgrade-badge upgrade-bbr">
          🍌 ${currentLang === "en"
@@ -217,8 +272,24 @@ function buildCard(cocktail) {
            : "丝绒果园升级版 — 加入荔枝利口酒，请询问调酒师"}
        </div>` : "";
 
+  const guestBack = `
+    <div class="card card-back">
+      <div class="card-back-icon">${cocktail.icon}</div>
+      <h3>${name}</h3>
+      <div class="card-zh">${zhName}</div>
+      <div class="card-divider"></div>
+      <div class="card-back-tags">${tags.split("|").map(t => `<span class="card-back-tag">${t.trim()}</span>`).join("")}</div>
+      <div class="card-back-abv-summary">
+        <span>${origLbl} <strong>${cocktail.original_abv}%</strong></span>
+        <span>${lightLbl} <strong>${cocktail.lighter_abv}%</strong></span>
+      </div>
+      <div class="status ${status}">${statusLabel}</div>
+      ${bbrBadge}${chocBadge}${velvetBadge}
+      <div class="flip-hint">🔄 ${flipHint}</div>
+    </div>`;
+
   return `
-    <div class="card-flip-wrap">
+    <div class="card-flip-wrap${bartenderMode ? " bartender-card" : ""}">
       <div class="card-flipper">
         <div class="card card-front">
           <div class="card-img-wrap">${drinkIllustration(cocktail.icon, name)}</div>
@@ -229,26 +300,103 @@ function buildCard(cocktail) {
           ${abvHtml}
           <div class="status ${status}">${statusLabel}</div>
           ${bbrBadge}${chocBadge}${velvetBadge}
-          <div class="flip-hint">🔄 ${currentLang === "en" ? "tap for ingredients" : "点击查看配料"}</div>
+          <div class="flip-hint">🔄 ${bartenderMode
+            ? (currentLang === "en" ? "tap for recipe" : "点击查看配方")
+            : (currentLang === "en" ? "tap for details" : "点击查看详情")}</div>
         </div>
-        <div class="card card-back">
-          <div class="card-back-icon">${cocktail.icon}</div>
-          <h3>${name}</h3>
-          <div class="card-divider"></div>
-          <div class="card-back-label">${ingLbl}</div>
-          <ul class="ingredients-list">${ingList}</ul>
-          <div class="status ${status}">${statusLabel}</div>
-          <div class="flip-hint">🔄 ${flipHint}</div>
-        </div>
+        ${bartenderMode ? bartenderBack : guestBack}
       </div>
     </div>`;
 }
 
 function attachFlipHandlers() {
   document.querySelectorAll(".card-flip-wrap").forEach(wrap => {
-    if (wrap.dataset.flipBound) return; // already bound, skip
+    if (wrap.dataset.flipBound) return;
     wrap.dataset.flipBound = "1";
-    wrap.addEventListener("click", () => wrap.classList.toggle("flipped"));
+    wrap.addEventListener("click", e => {
+      // Don't flip if clicking a button inside the card
+      if (e.target.closest("button")) return;
+      wrap.classList.toggle("flipped");
+    });
+  });
+
+  // Bartender: tab switcher
+  document.querySelectorAll(".bt-tab").forEach(tab => {
+    if (tab.dataset.bound) return;
+    tab.dataset.bound = "1";
+    tab.addEventListener("click", e => {
+      e.stopPropagation();
+      const tabId = tab.dataset.tab;
+      const card = tab.closest(".card-back--bartender");
+      card.querySelectorAll(".bt-tab").forEach(t => t.classList.remove("active"));
+      card.querySelectorAll(".bt-tab-panel").forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    });
+  });
+
+  // Bartender: servings buttons
+  document.querySelectorAll(".bt-srv-btn").forEach(btn => {
+    if (btn.dataset.bound) return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const id    = btn.dataset.id;
+      const delta = parseInt(btn.dataset.delta);
+      const el    = document.getElementById(id);
+      let val = Math.max(1, Math.min(12, parseInt(el.textContent) + delta));
+      el.textContent = val;
+
+      // Scale all ml values in recipe panels for this card
+      const card = btn.closest(".card-back--bartender");
+      card.querySelectorAll(".bt-recipe").forEach(r => {
+        // Replace NNml patterns with scaled values
+        // Store originals on first scale using data attribute
+        if (!r.dataset.original) r.dataset.original = r.textContent;
+        const orig = r.dataset.original;
+        r.textContent = orig.replace(/(\d+(?:\.\d+)?)ml/g, (_, n) => {
+          return Math.round(parseFloat(n) * val) + "ml";
+        });
+      });
+    });
+  });
+
+  // Bartender: timer buttons
+  let activeTimers = {};
+  document.querySelectorAll(".bt-timer-btn").forEach(btn => {
+    if (btn.dataset.bound) return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const secs    = parseInt(btn.dataset.secs);
+      const card    = btn.closest(".card-back--bartender");
+      const display = card.querySelector(".bt-timer-display");
+      const cardId  = card.querySelector(".bt-srv-val").id;
+
+      // Clear existing timer for this card
+      if (activeTimers[cardId]) {
+        clearInterval(activeTimers[cardId]);
+        delete activeTimers[cardId];
+      }
+
+      display.style.display = "flex";
+      let remaining = secs;
+      display.innerHTML = `<span class="bt-timer-count">${remaining}</span>`;
+
+      activeTimers[cardId] = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          clearInterval(activeTimers[cardId]);
+          delete activeTimers[cardId];
+          display.innerHTML = `<span class="bt-timer-done">✓ ${currentLang === "en" ? "Done!" : "完成！"}</span>`;
+          // Vibrate phone if supported
+          if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+          setTimeout(() => { display.style.display = "none"; }, 2000);
+        } else {
+          display.querySelector(".bt-timer-count").textContent = remaining;
+        }
+      }, 1000);
+    });
   });
 }
 
@@ -345,19 +493,105 @@ function renderSeasonalSection() {
   // flip handlers attached by renderMenu after all sections are rendered
 }
 
+// ── Search filter ─────────────────────────────────────────────────────────────
+function drinkMatchesSearch(cocktail) {
+  // If no search active, show everything
+  if (!searchQuery && activeChips.size === 0) return true;
+
+  const haystack = [
+    cocktail.name_en, cocktail.name_zh,
+    cocktail.tags_en, cocktail.tags_zh,
+    cocktail.tasting_category, cocktail.ingredients,
+  ].join(" ").toLowerCase();
+
+  // Text query match
+  const queryMatch = !searchQuery || haystack.includes(searchQuery.toLowerCase());
+
+  // Chip match — drink must contain ALL selected chips
+  const chipMatch = activeChips.size === 0 || [...activeChips].every(chip =>
+    cocktail.ingredients.split("|").map(i => i.trim()).includes(chip)
+  );
+
+  return queryMatch && chipMatch;
+}
+
+// ── Search bar ────────────────────────────────────────────────────────────────
+function renderSearchBar() {
+  const bar = document.getElementById("searchBar");
+  if (!bar) return;
+
+  // Chip ingredients = all spirits/liqueurs used across cocktails (sorted by usage)
+  const chipIngredients = [...usedIngredients]
+    .filter(i => BASE_SPIRITS.has(i))
+    .sort();
+
+  const chipsHtml = chipIngredients.map(ing => {
+    const active = activeChips.has(ing);
+    return `<button class="search-chip ${active ? "active" : ""}" data-ing="${ing}">${ing}</button>`;
+  }).join("");
+
+  const placeholder = currentLang === "en" ? "Search drinks, flavours, ingredients…" : "搜索饮品、风味、食材…";
+  const clearLabel  = currentLang === "en" ? "Clear" : "清除";
+  const filterLabel = currentLang === "en" ? "Filter by ingredient:" : "按食材筛选：";
+  const hasActive   = searchQuery || activeChips.size > 0;
+
+  bar.innerHTML = `
+    <div class="search-wrap">
+      <div class="search-input-row">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="${placeholder}"
+          value="${searchQuery}"
+          autocomplete="off"
+        >
+        ${hasActive ? `<button class="search-clear" id="searchClear">${clearLabel} ✕</button>` : ""}
+      </div>
+      <div class="search-chips-label">${filterLabel}</div>
+      <div class="search-chips" id="searchChips">${chipsHtml}</div>
+    </div>
+  `;
+
+  // Text input handler
+  document.getElementById("searchInput").addEventListener("input", e => {
+    searchQuery = e.target.value.trim();
+    renderMenu();
+  });
+
+  // Clear button
+  const clearBtn = document.getElementById("searchClear");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      searchQuery = "";
+      activeChips.clear();
+      renderMenu(); // re-renders search bar too
+    });
+  }
+
+  // Chip click handlers
+  document.querySelectorAll(".search-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const ing = btn.dataset.ing;
+      if (activeChips.has(ing)) activeChips.delete(ing);
+      else activeChips.add(ing);
+      renderMenu();
+    });
+  });
+}
+
 // ── Main menu renderer ────────────────────────────────────────────────────────
 function renderMenu() {
   renderFeatured();
   renderSeasonalSection();
+  renderSearchBar();
 
-  // Filter out seasonal-only drinks from main menu
-  // Seasonal theme drinks (tagged only with tiki/halloween/christmas) stay in seasonal section
   const seasonalOnlyTags = new Set(["tiki","halloween","christmas"]);
   const mainDrinks = cocktails.filter(c => {
     const tags = c.theme_tag ? c.theme_tag.split(",").map(t => t.trim()) : [];
-    // Include if it has house, botanical, light, or summer tag
     return tags.some(t => ["house","botanical","light","summer"].includes(t));
-  });
+  }).filter(drinkMatchesSearch); // ← apply search filter
 
   let menuHtml = "";
 
@@ -380,7 +614,16 @@ function renderMenu() {
       renderSection(currentLang === "en" ? "🌙 Spirit Forward" : "🌙 酒感浓郁", spirit);
   }
 
-  document.getElementById("menu").innerHTML = menuHtml;
+  document.getElementById("menu").innerHTML = menuHtml ||
+    `<div class="search-no-results">
+       <div class="search-no-results-icon">🍹</div>
+       <div class="search-no-results-text">
+         ${currentLang === "en" ? "No drinks match your search" : "没有符合搜索条件的饮品"}
+       </div>
+       <div class="search-no-results-sub">
+         ${currentLang === "en" ? "Try different keywords or clear the filters" : "试试其他关键词或清除筛选条件"}
+       </div>
+     </div>`;
   attachFlipHandlers();
 }
 
@@ -499,15 +742,114 @@ function buildThemeDropdown() {
   });
 }
 
+// ── Bartender mode ────────────────────────────────────────────────────────────
+function showPinModal() {
+  const existing = document.getElementById("pinModal");
+  if (existing) existing.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "pinModal";
+  modal.className = "pin-modal-overlay";
+  modal.innerHTML = `
+    <div class="pin-modal">
+      <div class="pin-modal-title">
+        ${bartenderMode
+          ? (currentLang === "en" ? "Exit Bartender Mode?" : "退出调酒师模式？")
+          : (currentLang === "en" ? "🔧 Bartender Mode" : "🔧 调酒师模式")}
+      </div>
+      ${bartenderMode ? "" : `
+        <div class="pin-modal-sub">
+          ${currentLang === "en" ? "Enter PIN to unlock" : "输入密码解锁"}
+        </div>
+        <div class="pin-dots" id="pinDots">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="pin-pad">
+          ${[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map(k => `
+            <button class="pin-key ${k === "" ? "pin-key--empty" : ""}" data-key="${k}">${k}</button>
+          `).join("")}
+        </div>
+        <div class="pin-error" id="pinError"></div>
+      `}
+      <div class="pin-modal-actions">
+        ${bartenderMode
+          ? `<button class="pin-confirm" id="pinConfirm">${currentLang === "en" ? "Exit" : "退出"}</button>`
+          : ""}
+        <button class="pin-cancel" id="pinCancel">${currentLang === "en" ? "Cancel" : "取消"}</button>
+      </div>
+    </div>`;
+
+  document.body.appendChild(modal);
+
+  let entered = "";
+
+  const updateDots = () => {
+    document.querySelectorAll(".pin-dots span").forEach((dot, i) => {
+      dot.classList.toggle("filled", i < entered.length);
+    });
+  };
+
+  // PIN pad
+  modal.querySelectorAll(".pin-key:not(.pin-key--empty)").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const k = btn.dataset.key;
+      if (k === "⌫") {
+        entered = entered.slice(0, -1);
+        updateDots();
+      } else if (entered.length < 4) {
+        entered += k;
+        updateDots();
+        if (entered.length === 4) {
+          if (entered === BARTENDER_PIN) {
+            bartenderMode = true;
+            document.body.classList.add("bartender-mode");
+            modal.remove();
+            render();
+          } else {
+            document.getElementById("pinError").textContent =
+              currentLang === "en" ? "Incorrect PIN" : "密码错误";
+            entered = "";
+            updateDots();
+          }
+        }
+      }
+    });
+  });
+
+  // Exit button (when already in bartender mode)
+  const confirmBtn = document.getElementById("pinConfirm");
+  if (confirmBtn) {
+    confirmBtn.addEventListener("click", () => {
+      bartenderMode = false;
+      document.body.classList.remove("bartender-mode");
+      modal.remove();
+      render();
+    });
+  }
+
+  document.getElementById("pinCancel").addEventListener("click", () => modal.remove());
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+}
+
+// Long-press on hero title to trigger PIN
+function setupBartenderTrigger() {
+  const title = document.querySelector(".hero h1");
+  if (!title) return;
+  let pressTimer;
+  title.addEventListener("pointerdown", () => {
+    pressTimer = setTimeout(() => showPinModal(), 1500);
+  });
+  title.addEventListener("pointerup",   () => clearTimeout(pressTimer));
+  title.addEventListener("pointerleave",() => clearTimeout(pressTimer));
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 async function init() {
-  // Load menu and inventory in parallel
   [cocktails, inventoryRows] = await Promise.all([
     loadCSV(MENU_URL),
     loadCSV(INVENTORY_URL),
   ]);
 
-  // Try to load settings for seasonal theme
   try {
     const settings = await loadCSV(SETTINGS_URL);
     const row = settings.find(r => r.key === "seasonal_theme");
@@ -520,6 +862,7 @@ async function init() {
   buildSheetsInventory();
   buildThemeDropdown();
   renderThemeDecos();
+  setupBartenderTrigger();
   render();
 
   document.getElementById("langBtn").addEventListener("click", () => {
