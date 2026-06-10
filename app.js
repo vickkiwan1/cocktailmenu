@@ -278,11 +278,8 @@ function buildCard(cocktail) {
       <h3>${name}</h3>
       <div class="card-zh">${zhName}</div>
       <div class="card-divider"></div>
-      <div class="card-back-tags">${tags.split("|").map(t => `<span class="card-back-tag">${t.trim()}</span>`).join("")}</div>
-      <div class="card-back-abv-summary">
-        <span>${origLbl} <strong>${cocktail.original_abv}%</strong></span>
-        <span>${lightLbl} <strong>${cocktail.lighter_abv}%</strong></span>
-      </div>
+      <div class="card-back-label">${ingLbl}</div>
+      <ul class="ingredients-list">${ingList}</ul>
       <div class="status ${status}">${statusLabel}</div>
       ${bbrBadge}${chocBadge}${velvetBadge}
       <div class="flip-hint">🔄 ${flipHint}</div>
