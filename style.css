@@ -1761,3 +1761,338 @@ body:not(.bartender-mode) .sidebar {
 body:not(.bartender-mode) .layout {
   grid-template-columns: 1fr;
 }
+
+/* ============================================================
+   BARTENDER MODE — FUTURISTIC DARK SPACE THEME
+   ============================================================ */
+body.bartender-mode {
+  --bg:            #080c14;
+  --bg-deep:       #040810;
+  --bg-card:       #0d1424;
+  --bg-sidebar:    #0d1424;
+  --bg-featured:   #0d1424;
+  --gold:          #00d4ff;
+  --gold-light:    #80eaff;
+  --gold-dark:     #0099cc;
+  --text-hero:     #80eaff;
+  --text-dark:     #c8e8ff;
+  --text-mid:      #7aaabb;
+  --text-muted:    #3a6677;
+  --accent:        #0066ff;
+  --border:        #00d4ff;
+  --border-card:   #0d3a55;
+  --section-color: #00d4ff;
+  --section-rule:  #00d4ff;
+  --status-bg:     rgba(0,212,255,0.05);
+  --font-display:  'Courier New', monospace;
+  --font-card:     'Courier New', monospace;
+  --font-body:     'Courier New', monospace;
+  --card-radius:   2px;
+  --sidebar-radius:2px;
+  --hero-pattern:
+    radial-gradient(ellipse at 20% 20%, rgba(0,100,255,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0,212,255,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0,30,80,0.8) 0%, transparent 70%);
+  --status-avail:  #004d2a;
+  --status-limit:  #4d3300;
+  --status-unavail:#4d0000;
+  --status-text:   #00ff88;
+  --status-radius: 2px;
+  background: var(--bg);
+}
+
+/* Override hero for space theme */
+body.bartender-mode .hero {
+  background: var(--bg-deep);
+  background-image: var(--hero-pattern);
+  border-bottom: 1px solid #00d4ff44;
+  position: relative;
+}
+
+/* Starfield behind everything */
+body.bartender-mode .theme-decos { display: none; }
+body.bartender-mode::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(0,212,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 8%, rgba(0,212,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(0,212,255,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 82% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(0,212,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 90%, rgba(0,212,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 45%, rgba(0,212,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 30%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hero text overrides */
+body.bartender-mode .hero h1 {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(28px, 5vw, 48px);
+  color: #00d4ff;
+  letter-spacing: 12px;
+  text-shadow:
+    0 0 20px rgba(0,212,255,0.8),
+    0 0 40px rgba(0,212,255,0.4);
+}
+body.bartender-mode .hero-subtitle {
+  font-family: 'Courier New', monospace;
+  color: #0066ff;
+  letter-spacing: 8px;
+  font-size: 11px;
+}
+body.bartender-mode .hero-zh {
+  font-family: 'Courier New', monospace;
+  color: #00d4ff;
+  opacity: 0.5;
+}
+body.bartender-mode .hero-tagline {
+  font-family: 'Courier New', monospace;
+  color: #3a6677;
+  letter-spacing: 4px;
+  font-size: 10px;
+}
+body.bartender-mode .hero-ornament {
+  color: #0066ff;
+  text-shadow: 0 0 10px rgba(0,100,255,0.8);
+}
+body.bartender-mode .hero-deco {
+  background: linear-gradient(90deg, transparent, #00d4ff44, transparent);
+}
+
+/* Controls */
+body.bartender-mode .hero-controls #langBtn,
+body.bartender-mode .theme-btn {
+  color: #00d4ff;
+  border-color: #00d4ff44;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+}
+body.bartender-mode .hero-controls #langBtn:hover,
+body.bartender-mode .theme-btn:hover {
+  background: rgba(0,212,255,0.1);
+  border-color: #00d4ff;
+}
+
+/* Section titles */
+body.bartender-mode .section-title {
+  font-family: 'Courier New', monospace;
+  color: #00d4ff;
+  letter-spacing: 6px;
+  font-size: 11px;
+  text-shadow: 0 0 10px rgba(0,212,255,0.4);
+}
+body.bartender-mode .section-title::before {
+  background: linear-gradient(90deg, transparent, #00d4ff44);
+}
+body.bartender-mode .section-title::after {
+  background: linear-gradient(90deg, #00d4ff44, transparent);
+}
+
+/* Cards */
+body.bartender-mode .card-front {
+  background: #0d1424;
+  border: 1px solid #0d3a55;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,30,80,0.3);
+}
+body.bartender-mode .card-front::after {
+  display: none;
+}
+body.bartender-mode .card h3 {
+  font-family: 'Courier New', monospace;
+  color: #80eaff;
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 1px;
+}
+body.bartender-mode .card-zh { color: #3a6677; }
+body.bartender-mode .tags { color: #7aaabb; font-style: normal; font-size: 11px; }
+body.bartender-mode .card-divider { background: #0d3a55; }
+body.bartender-mode .abv-block {
+  background: rgba(0,212,255,0.04);
+  border-color: #0d3a55;
+}
+body.bartender-mode .abv-label { color: #3a6677; letter-spacing: 1px; }
+body.bartender-mode .abv-value { color: #00d4ff; }
+body.bartender-mode .flip-hint { color: #3a6677; }
+
+/* Status badges — terminal style */
+body.bartender-mode .available {
+  background: #001a0d;
+  color: #00ff88;
+  border: 1px solid #00ff8844;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+}
+body.bartender-mode .limited {
+  background: #1a0d00;
+  color: #ffaa00;
+  border: 1px solid #ffaa0044;
+  font-family: 'Courier New', monospace;
+}
+body.bartender-mode .unavailable {
+  background: #1a0000;
+  color: #ff4444;
+  border: 1px solid #ff444444;
+  font-family: 'Courier New', monospace;
+}
+
+/* Sidebar */
+body.bartender-mode .sidebar-inner {
+  background: #0d1424;
+  border-color: #0d3a55;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+body.bartender-mode .sidebar h2 {
+  font-family: 'Courier New', monospace;
+  color: #00d4ff;
+  letter-spacing: 3px;
+  font-size: 9px;
+  border-color: #0d3a55;
+}
+body.bartender-mode .inventory-item {
+  color: #7aaabb;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+body.bartender-mode .inventory-item input[type="checkbox"] {
+  accent-color: #00d4ff;
+}
+body.bartender-mode .sidebar-actions button {
+  background: rgba(0,212,255,0.1);
+  border: 1px solid #00d4ff44;
+  color: #00d4ff;
+  font-family: 'Courier New', monospace;
+  border-radius: 2px;
+}
+body.bartender-mode .sidebar-actions button:hover {
+  background: rgba(0,212,255,0.2);
+}
+body.bartender-mode .sidebar-hint {
+  color: #3a6677;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+}
+
+/* Featured */
+body.bartender-mode .featured {
+  background: #0d1424;
+  border-color: #0d3a55;
+  box-shadow: 0 0 40px rgba(0,212,255,0.08);
+}
+body.bartender-mode .featured::before,
+body.bartender-mode .featured::after { display: none; }
+body.bartender-mode .featured-label {
+  font-family: 'Courier New', monospace;
+  color: #0066ff;
+  font-size: 9px;
+  letter-spacing: 4px;
+}
+body.bartender-mode .featured h3 {
+  font-family: 'Courier New', monospace;
+  color: #00d4ff;
+  font-style: normal;
+  text-shadow: 0 0 20px rgba(0,212,255,0.4);
+}
+body.bartender-mode .featured-tags {
+  font-family: 'Courier New', monospace;
+  color: #7aaabb;
+  font-size: 12px;
+  font-style: normal;
+}
+
+/* Search bar */
+body.bartender-mode .search-bar-outer {
+  background: #040810;
+  border-color: #0d3a55;
+}
+body.bartender-mode .search-input-row {
+  background: #0d1424;
+  border-color: #0d3a55;
+}
+body.bartender-mode .search-input-row:focus-within {
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 2px rgba(0,212,255,0.1);
+}
+body.bartender-mode .search-input {
+  color: #80eaff;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+}
+body.bartender-mode .search-input::placeholder { color: #3a6677; }
+body.bartender-mode .search-chips-label {
+  color: #3a6677;
+  font-family: 'Courier New', monospace;
+}
+body.bartender-mode .search-chip {
+  background: #0d1424;
+  border-color: #0d3a55;
+  color: #7aaabb;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  border-radius: 2px;
+}
+body.bartender-mode .search-chip:hover { border-color: #00d4ff; color: #00d4ff; }
+body.bartender-mode .search-chip.active {
+  background: rgba(0,212,255,0.15);
+  border-color: #00d4ff;
+  color: #00d4ff;
+}
+
+/* Bartender card back — space theme */
+body.bartender-mode .card-back--bartender {
+  background: #04080f;
+  border-color: #00d4ff44;
+  box-shadow: inset 0 0 30px rgba(0,30,100,0.5);
+}
+body.bartender-mode .bt-header h3 { color: #00d4ff; font-family: 'Courier New', monospace; }
+body.bartender-mode .bt-label { color: #3a6677; font-family: 'Courier New', monospace; }
+body.bartender-mode .bt-srv-val { color: #00d4ff; font-family: 'Courier New', monospace; }
+body.bartender-mode .bt-srv-btn { background: rgba(0,212,255,0.15); color: #00d4ff; }
+body.bartender-mode .bt-tab { border-color: #0d3a55; color: #3a6677; font-family: 'Courier New', monospace; }
+body.bartender-mode .bt-tab.active { background: rgba(0,212,255,0.15); border-color: #00d4ff; color: #00d4ff; }
+body.bartender-mode .bt-recipe {
+  color: #80eaff;
+  background: rgba(0,212,255,0.04);
+  border-color: #00d4ff44;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+}
+body.bartender-mode .bt-inst { color: #3a6677; font-family: 'Courier New', monospace; font-style: normal; font-size: 10px; }
+body.bartender-mode .bt-timer-btn { border-color: #00d4ff44; color: #00d4ff; font-family: 'Courier New', monospace; }
+body.bartender-mode .bt-timer-btn:hover { background: rgba(0,212,255,0.15); }
+body.bartender-mode .bt-timer-count { color: #00d4ff; font-family: 'Courier New', monospace; }
+body.bartender-mode .bt-timer-done { color: #00ff88; font-family: 'Courier New', monospace; }
+
+/* Bartender mode footer bar */
+body.bartender-mode::after {
+  content: '[ BARTENDER MODE ACTIVE ]';
+  font-family: 'Courier New', monospace;
+  background: #040810;
+  color: #00d4ff;
+  border-top: 1px solid #00d4ff44;
+  text-shadow: 0 0 10px rgba(0,212,255,0.6);
+  letter-spacing: 4px;
+  font-size: 9px;
+}
+
+/* Theme dropdown hidden in bartender mode — no need for theme switching */
+body.bartender-mode #themeDropdownWrap { display: none; }
+
+/* Upgrade badges */
+body.bartender-mode .upgrade-bbr,
+body.bartender-mode .upgrade-choc,
+body.bartender-mode .upgrade-velvet {
+  background: rgba(0,212,255,0.05);
+  border-color: #00d4ff44;
+  color: #7aaabb;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+}
