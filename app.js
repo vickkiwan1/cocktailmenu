@@ -246,6 +246,10 @@ function buildCard(cocktail) {
       </div>
       <div class="bt-timer-display" id="timer-${servingsId}" style="display:none"></div>
 
+      <a class="bt-log-btn" href="log.html?drink=${encodeURIComponent(cocktail.name_en)}" target="_blank">
+        📓 ${currentLang === "en" ? "Log This Drink" : "记录此饮品"}
+      </a>
+
       <div class="status ${status}">${statusLabel}</div>
       <div class="flip-hint">🔄 ${flipHint}</div>
     </div>`;
