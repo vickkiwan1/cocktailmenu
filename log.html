@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="house">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drink Log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="log.css">
+</head>
+<body data-log-page="true">
+
+<header class="log-header">
+  <a href="index.html" class="log-back">← Menu</a>
+  <h1 class="log-title">📓 Drink Log</h1>
+  <button class="log-new-btn" id="newEntryBtn">+ New Entry</button>
+</header>
+
+<div class="log-toolbar">
+  <select class="log-filter" id="filterDrink">
+    <option value="">All Drinks</option>
+  </select>
+  <select class="log-filter" id="filterRating">
+    <option value="">All Ratings</option>
+    <option value="5">★★★★★</option>
+    <option value="4">★★★★☆+</option>
+    <option value="3">★★★☆☆+</option>
+  </select>
+  <div class="log-stats" id="logStats"></div>
+</div>
+
+<div class="log-list" id="logList"></div>
+
+<div class="log-export-bar">
+  <div class="log-export-hint" id="exportHint"></div>
+  <button class="log-export-btn" id="exportJson">⬇ Export as JSON</button>
+  <button class="log-export-btn log-export-csv" id="exportCsv">⬇ Export as CSV</button>
+  <label class="log-export-btn log-import-btn">
+    ⬆ Import JSON
+    <input type="file" id="importFile" accept=".json" style="display:none">
+  </label>
+</div>
+
+<!-- Log Entry Modal -->
+<div class="log-modal-overlay" id="logModal" style="display:none">
+  <div class="log-modal">
+    <div class="log-modal-header">
+      <h2 class="log-modal-title" id="modalTitle">📓 Log a Drink</h2>
+      <button class="log-modal-close" id="modalClose">✕</button>
+    </div>
+
+    <div class="log-modal-body">
+      <!-- Drink selector -->
+      <div class="log-field">
+        <label class="log-label">Drink</label>
+        <select class="log-input" id="entryDrink"></select>
+      </div>
+
+      <!-- Date -->
+      <div class="log-field">
+        <label class="log-label">Date</label>
+        <input type="date" class="log-input" id="entryDate">
+      </div>
+
+      <!-- Version -->
+      <div class="log-field">
+        <label class="log-label">Version</label>
+        <select class="log-input" id="entryVersion">
+          <option value="Original">Original</option>
+          <option value="Light">Light</option>
+          <option value="BBR Edition">🍌 BBR Edition</option>
+          <option value="Chocolate Upgrade">🍫 Chocolate Upgrade</option>
+          <option value="Velvet Upgrade">🍇 Velvet Upgrade</option>
+        </select>
+      </div>
+
+      <!-- Rating -->
+      <div class="log-field">
+        <label class="log-label">Rating</label>
+        <div class="log-stars" id="entryStars">
+          <span class="log-star" data-val="1">★</span>
+          <span class="log-star" data-val="2">★</span>
+          <span class="log-star" data-val="3">★</span>
+          <span class="log-star" data-val="4">★</span>
+          <span class="log-star" data-val="5">★</span>
+        </div>
+      </div>
+
+      <!-- Tasting notes -->
+      <div class="log-field">
+        <label class="log-label">Tasting Notes</label>
+        <textarea class="log-input log-textarea" id="entryNotes"
+          placeholder="How did it taste? What worked, what didn't?"></textarea>
+      </div>
+
+      <!-- Recipe tweaks -->
+      <div class="log-field">
+        <label class="log-label">Recipe Tweaks</label>
+        <textarea class="log-input log-textarea" id="entryTweaks"
+          placeholder="Any adjustments you made to the recipe?"></textarea>
+      </div>
+
+      <!-- Mood tags -->
+      <div class="log-field">
+        <label class="log-label">Mood</label>
+        <div class="log-mood-chips" id="entryMood">
+          <button class="log-mood-chip" data-mood="first try">first try</button>
+          <button class="log-mood-chip" data-mood="nailed it">nailed it</button>
+          <button class="log-mood-chip" data-mood="need work">need work</button>
+          <button class="log-mood-chip" data-mood="guest favourite">guest favourite</button>
+          <button class="log-mood-chip" data-mood="experimenting">experimenting</button>
+          <button class="log-mood-chip" data-mood="bar reference">bar reference</button>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="log-field">
+        <label class="log-label">Photo</label>
+        <div class="log-photo-row">
+          <label class="log-photo-btn">
+            📷 Take Photo
+            <input type="file" id="photoCapture" accept="image/*" capture="environment" style="display:none">
+          </label>
+          <label class="log-photo-btn">
+            🖼 From Gallery
+            <input type="file" id="photoGallery" accept="image/*" style="display:none">
+          </label>
+        </div>
+        <div class="log-photo-preview" id="photoPreview"></div>
+      </div>
+    </div>
+
+    <div class="log-modal-footer">
+      <button class="log-save-btn" id="saveEntry">Save Entry</button>
+      <button class="log-cancel-btn" id="cancelEntry">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="log.js"></script>
+</body>
+</html>
