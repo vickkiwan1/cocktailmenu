@@ -2096,3 +2096,54 @@ body.bartender-mode .upgrade-velvet {
   font-family: 'Courier New', monospace;
   font-size: 9px;
 }
+
+/* ============================================================
+   LOG LINK + BARTENDER LOG BUTTON
+   ============================================================ */
+.log-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--card-radius);
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.log-link-btn:hover { background: var(--status-bg); border-color: var(--gold); }
+
+body.bartender-mode .log-link-btn {
+  border-color: #00d4ff44;
+  color: #00d4ff;
+}
+body.bartender-mode .log-link-btn:hover {
+  background: rgba(0,212,255,0.1);
+  border-color: #00d4ff;
+}
+
+.bt-log-btn {
+  display: block;
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px dashed var(--gold);
+  border-radius: 3px;
+  color: var(--gold-light);
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.bt-log-btn:hover { background: rgba(255,255,255,0.1); }
+
+[data-theme="botanical"] .bt-log-btn { color: var(--gold-dark); }
+
+body.bartender-mode .bt-log-btn {
+  border-color: #00d4ff44;
+  color: #00d4ff;
+}
+body.bartender-mode .bt-log-btn:hover { background: rgba(0,212,255,0.1); }
